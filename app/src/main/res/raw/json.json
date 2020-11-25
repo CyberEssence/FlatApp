@@ -1,33 +1,17 @@
-{
-    "items":
-        [
-            {
-                "id": 1,
-                "title": "Schone Zweiraumwohnung direkt im Grunen",
-                "price":500,
-                "location":{
-                    "address":"Bergmannstrae 33, 10961 Berlin",
-                    "latitude":52.488886876519175,
-                    "longitude":13.397688051882763
-                },
-                "images":[
-                    {
-                        "id":1,
-                        "url":"https://pictureis24-a.akamaihd.net/pic/orig01/N/278/959/428/278959428-0.jpg/ORIG/resize/600x400/format/jpg"
-                    },
-                    {
-                        "id":2,
-                        "url":"https://pictureis24-a.akamaihd.net/pic/orig01/N/278/959/436/278959436-0.jpg/ORIG/resize/600x400/format/jpg"             
-                    },
-                    {
-                        "id":3,
-                        "url":"https://pictureis24-a.akamaihd.net/pic/orig02/N/278/959/437/278959437-0.jpg/ORIG/resize/600x400/format/jpg"
-                    },
-                    {
-                        "id":4,
-                        "url":"https://pictureis24-a.akamaihd.net/pic/orig04/N/278/959/419/278959419-0.jpg/ORIG/resize/600x400/format/jpg"
-                    }
-                ]
-            }
-	]
-}
+[
+    {
+        "id": 1,
+        "title": "Schone Zweiraumwohnung direkt im Grunen",
+        "price": 500
+    },
+    {
+        "id": 2,
+        "title": "Schone Zweiraumwohnung direkt im Grunen",
+        "price": 1000
+    },
+    {
+        "id": 3,
+        "title": "Schone Zweiraumwohnung direkt im Grunen",
+        "price": 1500
+    }
+]

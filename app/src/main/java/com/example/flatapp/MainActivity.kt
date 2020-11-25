@@ -8,15 +8,13 @@ import android.widget.TextView
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONArray
 import java.io.InputStream
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    private val dataList: MutableList<Item> = mutableListOf()
-    private lateinit var myAdapter: MyAdapter
-    private val textView: TextView by lazy { findViewById<TextView>(R.id.textView) }
-    private val button: TextView by lazy { findViewById<Button>(R.id.button) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         var jsonString = loadJson(this)
 
-        var jsonStringItem: String = convert(jsonString)
-
-        button.setOnClickListener {
-            textView.text = jsonStringItem.toString()
-        }
+        var json = jsonString?.let { jsonResult(it) }
     }
 
     private fun loadJson(context: Context): String? {
@@ -49,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             // Create a json String
             jsonString = String(buffer)
-            return jsonString;
+            return jsonString
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {
@@ -67,6 +61,26 @@ class MainActivity : AppCompatActivity() {
         val item = jsonFile?.let { mapper.readValue<Item>(it) }
 
         return item.toString()
+    }
+
+    private fun jsonResult(jsonString: String) {
+        val jsonArray = JSONArray(jsonString)
+
+        val list = ArrayList<Item>()
+        var i = 0
+        while (i < jsonArray.length())
+        {
+            val jsonObject = jsonArray.getJSONObject(i)
+            list.add(Item(
+                jsonObject.getInt("id"),
+                jsonObject.getString("title"),
+                jsonObject.getInt("price")
+                //jsonObject.getString("location")
+            ))
+            i++
+        }
+        val adapter = ListAdapter(this, list)
+        mylist.adapter = adapter
     }
 
 }
