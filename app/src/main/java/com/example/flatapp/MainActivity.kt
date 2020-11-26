@@ -4,25 +4,30 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.card_one_item.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
+    val list = ArrayList<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var jsonString = loadJson(this)
+        val jsonString = loadJson(this)
 
         var json = jsonString?.let { jsonResult(it) }
+        val url: String = list[0].url
+
+
+        //Picasso.get().load(url).into(url_image)
+
     }
 
     private fun loadJson(context: Context): String? {
         var input: InputStream? = null
-        var jsonString: String
+        val jsonString: String
 
         try {
             // Create InputStream
@@ -54,7 +59,6 @@ class MainActivity : AppCompatActivity() {
     private fun jsonResult(jsonString: String) {
         val jsonObject: JSONObject = JSONObject(jsonString)
         val items: JSONArray = jsonObject.getJSONArray("items")
-        val list = ArrayList<Item>()
         var i = 0
         while (i < items.length())
         {

@@ -1,14 +1,12 @@
 package com.example.flatapp
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 
 class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()
 {
@@ -25,6 +23,9 @@ class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<Recycler
             view.setOnClickListener { v: View ->
                 val position: Int = adapterPosition
                 Toast.makeText(view.context, "You clicked on item # ${position + 1}", Toast.LENGTH_SHORT).show()
+                val intent = Intent(view.context, CardActivity::class.java)
+                intent.putExtra("url", list[0].url)
+                view.context.startActivity(intent)
             }
         }
     }
@@ -43,6 +44,5 @@ class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<Recycler
         holder.location.text = list[position].location
         holder.price.text = list[position].price.toString()
         //holder.imagesUrl.text = list[position].url
-
     }
 }
