@@ -1,17 +1,12 @@
 package com.example.flatapp
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.InputStream
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,29 +49,32 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    private fun convert(jsonFile: String?): String {
-        val mapper = jacksonObjectMapper()
-        mapper.configure( DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true )
-
-        val item = jsonFile?.let { mapper.readValue<Item>(it) }
-
-        return item.toString()
-    }
-
     private fun jsonResult(jsonString: String) {
-        val jsonArray = JSONArray(jsonString)
-
+        val jsonObject: JSONObject = JSONObject(jsonString)
+        val items: JSONArray = jsonObject.getJSONArray("items")
         val list = ArrayList<Item>()
         var i = 0
-        while (i < jsonArray.length())
+        while (i < items.length())
         {
-            val jsonObject = jsonArray.getJSONObject(i)
-            list.add(Item(
-                jsonObject.getInt("id"),
-                jsonObject.getString("title"),
-                jsonObject.getInt("price")
-                //jsonObject.getString("location")
-            ))
+            val c: JSONObject = items.getJSONObject(i)
+            val arr: JSONArray = c.getJSONArray("images")
+            val arrObj: JSONObject = arr.getJSONObject(i)
+            val loc: JSONObject = c.getJSONObject("location")
+            var j = 0
+
+
+
+            list.add(
+                Item(
+                    c.getInt("id"),
+                    c.getString("title"),
+                    c.getInt("price"),
+                    loc.getString("address") + " " +
+                            loc.getDouble("latitude").toString() + " " +
+                            loc.getDouble("longitude").toString(),
+                    arrObj.getString("url")
+                    )
+                )
             i++
         }
         val adapter = ListAdapter(this, list)

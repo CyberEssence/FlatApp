@@ -1,5 +1,6 @@
 package com.example.flatapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +9,20 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 
 class ListAdapter(val context: Context, val list:ArrayList<Item>) : BaseAdapter() {
+    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View = LayoutInflater.from(context).inflate(R.layout.card_item, parent, false)
         val id = view.findViewById<TextView>(R.id.id)
         val title = view.findViewById<TextView>(R.id.title)
-        //val location = view.findViewById<TextView>(R.id.description)
+        val location = view.findViewById<TextView>(R.id.description)
         val price = view.findViewById<TextView>(R.id.price)
+        val imagesUrl = view.findViewById<TextView>(R.id.url)
 
         id.text = list[position].id.toString()
         title.text = list[position].title
-        //location.text = list[position].location
+        location.text = list[position].location
         price.text = list[position].price.toString()
+        imagesUrl.text = list[position].url
         return view
     }
 
