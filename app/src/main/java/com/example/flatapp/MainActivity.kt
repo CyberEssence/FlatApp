@@ -4,12 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_one_item.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.InputStream
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
+
+
     private fun jsonResult(jsonString: String) {
         val jsonObject: JSONObject = JSONObject(jsonString)
         val items: JSONArray = jsonObject.getJSONArray("items")
@@ -77,8 +79,8 @@ class MainActivity : AppCompatActivity() {
                 )
             i++
         }
-        val adapter = ListAdapter(this, list)
-        mylist.adapter = adapter
+        val adapter = RecyclerAdapter(list)
+        my_list.adapter = adapter
     }
 
 }

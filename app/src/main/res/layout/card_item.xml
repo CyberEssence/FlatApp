@@ -6,15 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="#FFFFFF"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="8dp"
+    android:background="@drawable/rec_view_shape"
+    >
 
     <TextView
         android:id="@+id/id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/round_text_view"
         android:gravity="center"
         android:text="@string/id"
@@ -22,48 +24,24 @@
         android:textSize="18sp" />
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="322dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="Название квартиры: " />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/description"
-            android:layout_width="322dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="12sp"
-            tools:text="Локация: " />
-
-        <TextView
-            android:id="@+id/url"
-            android:layout_width="322dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="12sp"
-            tools:text="Url: " />
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/price"
-            android:layout_width="322dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textSize="12sp"
-            tools:text="Цена: " />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  />
 
     </LinearLayout>
-
 </LinearLayout>
