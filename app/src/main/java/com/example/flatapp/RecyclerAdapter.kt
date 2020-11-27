@@ -16,7 +16,6 @@ class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<Recycler
         val title = view.findViewById<TextView>(R.id.title)
         val location = view.findViewById<TextView>(R.id.location)
         val price = view.findViewById<TextView>(R.id.price)
-        //val imagesUrl = view.findViewById<TextView>(R.id.url)
 
 
         init {
@@ -25,6 +24,10 @@ class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<Recycler
                 Toast.makeText(view.context, "You clicked on item # ${position + 1}", Toast.LENGTH_SHORT).show()
                 val intent = Intent(view.context, CardActivity::class.java)
                 intent.putExtra("url", list[0].url)
+                val latitude: Double = list[0].latitude
+                val longitude: Double = list[0].longitude
+                intent.putExtra("latitude", latitude)
+                intent.putExtra("longitude", longitude)
                 view.context.startActivity(intent)
             }
         }
@@ -41,8 +44,7 @@ class RecyclerAdapter(val list: ArrayList<Item>) : RecyclerView.Adapter<Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.id.text = list[position].id.toString()
         holder.title.text = list[position].title
-        holder.location.text = list[position].location
+        holder.location.text = list[position].address
         holder.price.text = list[position].price.toString()
-        //holder.imagesUrl.text = list[position].url
     }
 }

@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         val url: String = list[0].url
 
 
-        //Picasso.get().load(url).into(url_image)
-
     }
 
     private fun loadJson(context: Context): String? {
@@ -75,9 +73,9 @@ class MainActivity : AppCompatActivity() {
                     c.getInt("id"),
                     c.getString("title"),
                     c.getInt("price"),
-                    loc.getString("address") + " " +
-                            loc.getDouble("latitude").toString() + " " +
-                            loc.getDouble("longitude").toString(),
+                    loc.getString("address"),
+                            loc.getDouble("latitude"),
+                            loc.getDouble("longitude"),
                     arrObj.getString("url")
                     )
                 )
